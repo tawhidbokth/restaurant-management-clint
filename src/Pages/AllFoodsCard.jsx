@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AllFoodsCard = ({ food }) => {
   return (
@@ -17,9 +18,11 @@ const AllFoodsCard = ({ food }) => {
         <p className="text-gray-600 text-sm mb-4">
           {food.description.slice(0, 60)}...
         </p>
-        <button className="px-4 py-2 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition">
-          Details
-        </button>
+        <Link to={`/foods/${food._id}`}>
+          <button className="px-4 py-2 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition">
+            Details
+          </button>
+        </Link>
       </div>
     </div>
   );
