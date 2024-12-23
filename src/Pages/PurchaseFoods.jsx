@@ -1,9 +1,10 @@
-import React, { useContext, useState } from 'react';
-import { AouthContext } from '../Provider/AouthProvider';
+import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { AouthContext } from '../Provider/AouthProvider';
 
 const PurchaseFoods = () => {
-  const { user } = useContext(AouthContext); // Fetching logged-in user information
+  const { user } = useContext(AouthContext);
+  console.log(user);
   const food = useLoaderData();
 
   const handleSubmit = e => {
@@ -63,6 +64,7 @@ const PurchaseFoods = () => {
           <label className="block text-gray-700 font-medium">Buyer Name</label>
           <input
             type="text"
+            value={user.displayName}
             readOnly
             className="w-full p-2 border rounded-lg bg-gray-100"
           />
@@ -72,6 +74,7 @@ const PurchaseFoods = () => {
           <label className="block text-gray-700 font-medium">Buyer Email</label>
           <input
             type="email"
+            value={user.email}
             readOnly
             className="w-full p-2 border rounded-lg bg-gray-100"
           />

@@ -1,10 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import Swal from 'sweetalert2';
+import { AouthContext } from '../Provider/AouthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const AddFoods = () => {
+  const { user } = useContext(AouthContext);
+  const navigate = useNavigate();
+
   const handleSubmit = e => {
     e.preventDefault();
-    const from = e.target;
-    console.log(from);
+    const formData = new FormData(e.target);
+    const initialData = Object.fromEntries(formData.entries());
+    console.log(initialData);
+
+    fetch('http://localhost:5000/foods', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(initialData),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.insertedId) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Job Has been added.',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate('/');
+        }
+      });
   };
 
   return (
@@ -16,7 +45,7 @@ const AddFoods = () => {
           <label className="block text-sm font-medium">Food Name</label>
           <input
             type="text"
-            name="name"
+            name="foodName"
             required
             placeholder="Enter food name"
             className="w-full p-2 border rounded"
@@ -28,7 +57,7 @@ const AddFoods = () => {
           <label className="block text-sm font-medium">Food Image (URL)</label>
           <input
             type="url"
-            name="image"
+            name="foodImage"
             required
             placeholder="Enter food image URL"
             className="w-full p-2 border rounded"
@@ -39,7 +68,7 @@ const AddFoods = () => {
         <div>
           <label className="block text-sm font-medium">Food Category</label>
           <select
-            name="category"
+            name="foodCategory"
             required
             className="w-full p-2 border rounded"
           >
@@ -82,7 +111,7 @@ const AddFoods = () => {
           </label>
           <input
             type="text"
-            name="origin"
+            name="foodOrigin"
             required
             placeholder="Enter food origin"
             className="w-full p-2 border rounded"
@@ -104,7 +133,14 @@ const AddFoods = () => {
           <label className="block text-sm font-medium">Added By</label>
           <input
             type="text"
-            value="im tawhid "
+            value={`Name: ${user.displayName}`}
+            readOnly
+            className="w-full p-2 border rounded bg-gray-100"
+          />
+
+          <input
+            type="text"
+            value={`Email: ${user.email}`}
             readOnly
             className="w-full p-2 border rounded bg-gray-100"
           />
