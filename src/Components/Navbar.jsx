@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { AouthContext } from '../Provider/AouthProvider';
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AouthContext);
-  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const handleSignOut = () => {
     signOutUser()
@@ -15,10 +15,6 @@ const Navbar = () => {
           position: 'top-center',
           autoClose: 2000,
         });
-
-        setTimeout(() => {
-          navigate('/');
-        }, 2000);
       })
       .catch(error => {
         toast.error(`Error: ${error.message}`, {
@@ -29,6 +25,7 @@ const Navbar = () => {
   };
 
   const closeMenu = () => setIsMenuOpen(false);
+  const toggleDropdown = () => setShowDropdown(prev => !prev);
 
   const listnav = (
     <>
@@ -41,22 +38,6 @@ const Navbar = () => {
       <li onClick={closeMenu}>
         <NavLink to="/gallery">Gallery</NavLink>
       </li>
-      {user && (
-        <>
-          <li onClick={closeMenu}>
-            <NavLink to={'/purchase'}>Food Purchase</NavLink>
-          </li>
-          <li onClick={closeMenu}>
-            <NavLink to={'/myfoods'}>My Foods</NavLink>
-          </li>
-          <li onClick={closeMenu}>
-            <NavLink to={'/addfoods'}>Add Foods</NavLink>
-          </li>
-          <li onClick={closeMenu}>
-            <NavLink to={'/myorder'}>My Orders</NavLink>
-          </li>
-        </>
-      )}
     </>
   );
 
@@ -64,7 +45,6 @@ const Navbar = () => {
     <div className="navbar bg-base-100 lg:w-[1400px] lg:mx-auto">
       <div className="navbar-start flex items-center">
         <a className="btn btn-ghost p-0">
-          {/* <img className="w-12 h-12 rounded-full" src={logo} alt="Logo" /> */}
           <p>logo</p>
         </a>
 
@@ -99,17 +79,43 @@ const Navbar = () => {
         </div>
       )}
 
-      <div className="navbar-end flex items-center gap-4">
+      <div className="navbar-end flex items-center gap-4 relative">
         {user ? (
           <div className="flex items-center gap-4">
-            <div className="avatar">
-              <div className="w-10 rounded-full">
-                <img src={user.photoURL} alt="User Profile" />
-              </div>
-            </div>
+            {/* Sign Out Button */}
             <button onClick={handleSignOut} className="btn btn-sm">
               Sign Out
             </button>
+            {/* Profile Image and Dropdown */}
+            <div className="relative">
+              <div className="avatar cursor-pointer" onClick={toggleDropdown}>
+                <div className="w-10 rounded-full">
+                  <img src={user.photoURL} alt="User Profile" />
+                </div>
+              </div>
+              {showDropdown && (
+                <div className="absolute z-10 right-0 mt-2 w-40 bg-white border rounded shadow-lg">
+                  <Link
+                    to="/myfoods"
+                    className="block px-4 py-2 hover:bg-gray-200 text-gray-700"
+                  >
+                    My Foods
+                  </Link>
+                  <Link
+                    to="/addfoods"
+                    className="block px-4 py-2 hover:bg-gray-200 text-gray-700"
+                  >
+                    Add Foods
+                  </Link>
+                  <Link
+                    to="/myorder"
+                    className="block px-4 py-2 hover:bg-gray-200 text-gray-700"
+                  >
+                    My Orders
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
         ) : (
           <Link to={'/login'} className="btn btn-sm">
