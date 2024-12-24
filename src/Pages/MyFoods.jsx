@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AouthContext } from '../Provider/AouthProvider';
+import { GrUpdate } from 'react-icons/gr';
 
 const MyFoods = () => {
   const [foods, setfoods] = useState([]);
@@ -44,7 +45,9 @@ const MyFoods = () => {
                 <td>${food.price}</td>
                 <td>
                   <Link to={`/update/${food._id}`}>
-                    <button className="btn btn-link">Update</button>
+                    <button className="btn btn-link">
+                      <GrUpdate /> Update
+                    </button>
                   </Link>
                 </td>
               </tr>
