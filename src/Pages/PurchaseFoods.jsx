@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import { AouthContext } from '../Provider/AouthProvider';
 import Swal from 'sweetalert2';
+import moment from 'moment';
 
 const PurchaseFoods = () => {
   const { id } = useParams();
@@ -17,6 +18,7 @@ const PurchaseFoods = () => {
     const quantity = form.quantity.value;
     const userName = form.userName.value;
     const userEmail = form.userEmail.value;
+    const buyingDate = moment().format('MMMM Do YYYY, h:mm:ss a');
 
     const foodPurchase = {
       job_id: id,
@@ -25,6 +27,7 @@ const PurchaseFoods = () => {
       quantity,
       userName,
       userEmail,
+      buyingDate,
     };
 
     fetch('http://localhost:5000/foods-purchase', {
