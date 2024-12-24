@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 // import Swal from 'sweetalert2';
 import { AouthContext } from '../Provider/AouthProvider';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const FoodUpdate = () => {
   const { user } = useContext(AouthContext);
@@ -14,27 +15,27 @@ const FoodUpdate = () => {
     const formData = new FormData(e.target);
     const initialData = Object.fromEntries(formData.entries());
     console.log(initialData);
-
-    // fetch('http://localhost:5000/foods', {
-    //   method: 'POST',
-    //   headers: {
-    //     'content-type': 'application/json',
-    //   },
-    //   body: JSON.stringify(initialData),
-    // })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     if (data.insertedId) {
-    //       Swal.fire({
-    //         position: 'top-end',
-    //         icon: 'success',
-    //         title: 'Job Has been added.',
-    //         showConfirmButton: false,
-    //         timer: 1500,
-    //       });
-    //       navigate('/');
-    //     }
-    //   });
+    fetch(`http://localhost:5000/foods/${food._id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(initialData),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.modifiedCount) {
+          console.log('successfully updated');
+          Swal.fire({
+            title: 'Success!',
+            text: 'Equipment updated successfully',
+            icon: 'success',
+            confirmButtonText: 'Ok',
+          });
+          e.target.reset();
+        }
+      });
   };
 
   return (
