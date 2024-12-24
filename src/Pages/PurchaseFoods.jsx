@@ -1,24 +1,52 @@
 import React, { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import { AouthContext } from '../Provider/AouthProvider';
+import Swal from 'sweetalert2';
 
 const PurchaseFoods = () => {
+  const { id } = useParams();
   const { user } = useContext(AouthContext);
-  console.log(user);
   const food = useLoaderData();
+  const navigate = useNavigate();
 
   const handleSubmit = e => {
     e.preventDefault();
-    const purchaseData = {
-      ...formData,
-      buyerName: user.displayName,
-      buyerEmail: user.email,
-      buyingDate: Date.now(),
+    const form = e.target;
+    const foodName = form.foodName.value;
+    const price = form.price.value;
+    const quantity = form.quantity.value;
+    const userName = form.userName.value;
+    const userEmail = form.userEmail.value;
+
+    const foodPurchase = {
+      job_id: id,
+      foodName,
+      price,
+      quantity,
+      userName,
+      userEmail,
     };
 
-    // Send `purchaseData` to the database or API
-    console.log(purchaseData);
-    alert('Purchase Successful!');
+    fetch('http://localhost:5000/foods-purchase', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(foodPurchase),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.insertedId) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          // navigate('/');
+        }
+      });
   };
 
   return (
@@ -64,7 +92,8 @@ const PurchaseFoods = () => {
           <label className="block text-gray-700 font-medium">Buyer Name</label>
           <input
             type="text"
-            value={user.displayName}
+            name="userName"
+            defaultValue={user.displayName}
             readOnly
             className="w-full p-2 border rounded-lg bg-gray-100"
           />
@@ -74,7 +103,8 @@ const PurchaseFoods = () => {
           <label className="block text-gray-700 font-medium">Buyer Email</label>
           <input
             type="email"
-            value={user.email}
+            name="userEmail"
+            defaultValue={user.email}
             readOnly
             className="w-full p-2 border rounded-lg bg-gray-100"
           />
