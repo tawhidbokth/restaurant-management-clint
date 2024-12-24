@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 import { AouthContext } from '../Provider/AouthProvider';
-import { useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 
-const AddFoods = () => {
+const FoodUpdate = () => {
   const { user } = useContext(AouthContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const food = useLoaderData();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -14,26 +15,26 @@ const AddFoods = () => {
     const initialData = Object.fromEntries(formData.entries());
     console.log(initialData);
 
-    fetch('http://localhost:5000/foods', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(initialData),
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.insertedId) {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Job Has been added.',
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          navigate('/');
-        }
-      });
+    // fetch('http://localhost:5000/foods', {
+    //   method: 'POST',
+    //   headers: {
+    //     'content-type': 'application/json',
+    //   },
+    //   body: JSON.stringify(initialData),
+    // })
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     if (data.insertedId) {
+    //       Swal.fire({
+    //         position: 'top-end',
+    //         icon: 'success',
+    //         title: 'Job Has been added.',
+    //         showConfirmButton: false,
+    //         timer: 1500,
+    //       });
+    //       navigate('/');
+    //     }
+    //   });
   };
 
   return (
@@ -46,6 +47,7 @@ const AddFoods = () => {
           <input
             type="text"
             name="foodName"
+            defaultValue={food.foodName}
             required
             placeholder="Enter food name"
             className="w-full p-2 border rounded"
@@ -58,6 +60,7 @@ const AddFoods = () => {
           <input
             type="url"
             name="foodImage"
+            defaultValue={food.foodImage}
             required
             placeholder="Enter food image URL"
             className="w-full p-2 border rounded"
@@ -69,6 +72,7 @@ const AddFoods = () => {
           <label className="block text-sm font-medium">Food Category</label>
           <select
             name="foodCategory"
+            defaultValue={food.foodCategory}
             required
             className="w-full p-2 border rounded"
           >
@@ -86,6 +90,7 @@ const AddFoods = () => {
           <input
             type="number"
             name="quantity"
+            defaultValue={food.quantity}
             required
             placeholder="Enter quantity"
             className="w-full p-2 border rounded"
@@ -98,6 +103,7 @@ const AddFoods = () => {
           <input
             type="number"
             name="price"
+            defaultValue={food.price}
             required
             placeholder="Enter price"
             className="w-full p-2 border rounded"
@@ -112,6 +118,7 @@ const AddFoods = () => {
           <input
             type="text"
             name="foodOrigin"
+            defaultValue={food.foodOrigin}
             required
             placeholder="Enter food origin"
             className="w-full p-2 border rounded"
@@ -123,6 +130,7 @@ const AddFoods = () => {
           <label className="block text-sm font-medium">Short Description</label>
           <textarea
             name="description"
+            defaultValue={food.description}
             required
             placeholder="Enter food description"
             className="w-full p-2 border rounded"
@@ -159,16 +167,15 @@ const AddFoods = () => {
             required
           />
         </div>
-        {/* Add Item Button */}
         <button
           type="submit"
           className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
         >
-          Add Item
+          Update
         </button>
       </form>
     </div>
   );
 };
 
-export default AddFoods;
+export default FoodUpdate;
