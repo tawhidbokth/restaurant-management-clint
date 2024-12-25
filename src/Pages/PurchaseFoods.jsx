@@ -1,14 +1,16 @@
 import React, { useContext } from 'react';
 import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
-import { AouthContext } from '../Provider/AouthProvider';
+
 import Swal from 'sweetalert2';
 import moment from 'moment';
+import { AouthContext } from './../Provider/AouthProvider';
 
 const PurchaseFoods = () => {
   const { id } = useParams();
   const { user } = useContext(AouthContext);
   const food = useLoaderData();
   const navigate = useNavigate();
+  console.log('amar user', user);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -41,14 +43,23 @@ const PurchaseFoods = () => {
       .then(data => {
         if (data.insertedId) {
           Swal.fire({
-            position: 'top-end',
+            position: 'top-center',
             icon: 'success',
-            title: 'Your work has been saved',
+            title: 'Your purchase was successful!',
             showConfirmButton: false,
             timer: 1500,
+          }).then(() => {
+            navigate('/myorder');
           });
-          // navigate('/');
         }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong with the purchase!',
+        });
       });
   };
 

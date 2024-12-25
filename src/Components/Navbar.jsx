@@ -44,8 +44,13 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100 lg:w-[1400px] lg:mx-auto">
       <div className="navbar-start flex items-center">
-        <a className="btn btn-ghost p-0">
-          <p>logo</p>
+        <a className=" flex items-center gap-2 p-0">
+          <img
+            className="w-[50px] rounded-full"
+            src="https://i.ibb.co.com/3dLVZ1x/DALL-E-2024-12-25-08-39-19-A-luxurious-golden-logo-design-for-a-restaurant-named-Savory-Delight-The.webp"
+            alt=""
+          />
+          <p>Savory Delight</p>
         </a>
 
         <button

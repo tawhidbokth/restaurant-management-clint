@@ -1,17 +1,17 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import AllFoodsCard from './AllFoodsCard';
-import PurchaseFoods from './PurchaseFoods';
 
 const AllFoods = () => {
   const foods = useLoaderData();
   return (
     <div>
+      {/* Banner Section */}
       <div
-        className="relative w-full mb-5  h-[200px] bg-cover bg-center"
+        className="relative z-0 w-full max-w-7xl mx-auto mb-5 h-[200px] bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://i.ibb.co.com/cTCcpBZ/DALL-E-2024-12-23-19-10-48-A-beautifully-styled-restaurant-themed-banner-background-image-with-a-war.webp')",
+            "url('https://i.ibb.co/cTCcpBZ/DALL-E-2024-12-23-19-10-48-A-beautifully-styled-restaurant-themed-banner-background-image-with-a-war.webp')",
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
@@ -24,7 +24,9 @@ const AllFoods = () => {
           </p>
         </div>
       </div>
-      <div className="w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
+
+      {/* Cards Section */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
         {foods.map(food => (
           <AllFoodsCard key={food._id} food={food}></AllFoodsCard>
         ))}

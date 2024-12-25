@@ -54,50 +54,49 @@ const MyOrder = () => {
   };
 
   return (
-    <div>
-      <div className="overflow-x-auto">
-        <table className="table">
-          {/* Table Head */}
-          <thead>
-            <tr>
-              <th>No:</th>
-              <th>Food Image</th>
-              <th>Food Name</th>
-              <th>Price</th>
-              <th>Owner</th>
-              <th>Buying Date and Time</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {foods.map((food, index) => (
-              <tr key={food._id}>
-                <th>{index + 1}</th>
-                <td>
-                  <div className="avatar">
-                    <div className="mask mask-squircle h-12 w-12">
-                      <img src={food.foodImage} alt="Food Item" />
-                      {console.log('image', food.foodImage)}
-                    </div>
+    <div className="overflow-x-auto">
+      <table className="table w-full">
+        {/* Table Head */}
+        <thead>
+          <tr>
+            <th className="p-2">No:</th>
+            <th className="p-2">Food Image</th>
+            <th className="p-2">Food Name</th>
+            <th className="p-2">Price</th>
+            <th className="p-2">Owner</th>
+            <th className="p-2">Quantity</th>
+            <th className="p-2">Buying Date and Time</th>
+            <th className="p-2">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {foods.map((food, index) => (
+            <tr key={food._id}>
+              <td className="p-2">{index + 1}</td>
+              <td className="p-2">
+                <div className="avatar">
+                  <div className="mask mask-squircle h-12 w-12">
+                    <img src={food.foodImage} alt="Food Item" />
                   </div>
-                </td>
-                <td>{food.foodName}</td>
-                <td>{food.price}</td>
-                <td>{food.userName}</td>
-                <td>{food.buyingDate}</td>
-                <td>
-                  <button
-                    onClick={() => handleDelete(food._id)}
-                    className="btn btn-link text-red-500 hover:text-red-700"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                </div>
+              </td>
+              <td className="p-2">{food.foodName}</td>
+              <td className="p-2">{food.price}</td>
+              <td className="p-2">{food.userName}</td>
+              <td className="p-2">{food.quantity}</td>
+              <td className="p-2">{food.buyingDate}</td>
+              <td className="p-2">
+                <button
+                  onClick={() => handleDelete(food._id)}
+                  className="btn btn-link text-red-500 hover:text-red-700"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

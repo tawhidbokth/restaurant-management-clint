@@ -5,13 +5,13 @@ import Register from '../Pages/Register';
 import Home from '../Components/Home';
 import AllFoods from '../Pages/AllFoods';
 import Gallery from '../Pages/Gallery';
-import FoodPurchase from '../Pages/FoodPurchase';
 import MyFoods from '../Pages/MyFoods';
 import AddFoods from '../Pages/AddFoods';
 import MyOrder from '../Pages/MyOrder';
 import SingleFoods from '../Pages/SingleFoods';
 import PurchasePage from '../Pages/PurchaseFoods';
 import FoodUpdate from '../Pages/FoodUpdate';
+import PurchaseFoods from '../Pages/PurchaseFoods';
 
 const router = createBrowserRouter([
   {
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'purchase',
-        element: <FoodPurchase></FoodPurchase>,
+        element: <PurchaseFoods></PurchaseFoods>,
       },
       {
         path: 'myfoods',

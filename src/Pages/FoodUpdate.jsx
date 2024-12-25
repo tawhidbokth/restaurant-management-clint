@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 const FoodUpdate = () => {
   const { user } = useContext(AouthContext);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const food = useLoaderData();
 
   const handleSubmit = e => {
@@ -29,11 +29,13 @@ const FoodUpdate = () => {
           console.log('successfully updated');
           Swal.fire({
             title: 'Success!',
-            text: 'Equipment updated successfully',
+            position: 'top-center',
+            text: 'Food updated successfully',
             icon: 'success',
             confirmButtonText: 'Ok',
           });
           e.target.reset();
+          navigate('/myfoods');
         }
       });
   };

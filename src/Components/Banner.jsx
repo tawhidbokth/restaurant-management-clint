@@ -4,7 +4,7 @@ const Banner = () => {
   return (
     <div>
       <div
-        className="relative w-full h-[600px] bg-cover bg-center"
+        className="relative z-0 w-full h-[600px] bg-cover bg-center"
         style={{
           backgroundImage:
             "url('https://i.ibb.co.com/cTCcpBZ/DALL-E-2024-12-23-19-10-48-A-beautifully-styled-restaurant-themed-banner-background-image-with-a-war.webp')",

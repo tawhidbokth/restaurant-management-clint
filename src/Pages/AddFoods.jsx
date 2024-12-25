@@ -25,13 +25,13 @@ const AddFoods = () => {
       .then(data => {
         if (data.insertedId) {
           Swal.fire({
-            position: 'top-end',
+            position: 'top-center',
             icon: 'success',
-            title: 'Job Has been added.',
+            title: 'Food Has been added.',
             showConfirmButton: false,
             timer: 1500,
           });
-          navigate('/');
+          navigate('/myfoods');
         }
       });
   };
