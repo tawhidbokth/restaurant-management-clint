@@ -21,7 +21,7 @@ const PurchaseFoods = () => {
     const buyingDate = moment().format('MMMM Do YYYY, h:mm:ss a');
 
     const foodPurchase = {
-      job_id: id,
+      food_id: id,
       foodName,
       price,
       quantity,

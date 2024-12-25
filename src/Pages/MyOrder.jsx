@@ -77,6 +77,7 @@ const MyOrder = () => {
                   <div className="avatar">
                     <div className="mask mask-squircle h-12 w-12">
                       <img src={food.foodImage} alt="Food Item" />
+                      {console.log('image', food.foodImage)}
                     </div>
                   </div>
                 </td>
