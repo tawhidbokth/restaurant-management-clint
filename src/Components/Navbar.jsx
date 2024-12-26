@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { AouthContext } from '../Provider/AouthProvider';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AouthContext);
@@ -24,112 +25,189 @@ const Navbar = () => {
       });
   };
 
-  const closeMenu = () => setIsMenuOpen(false);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleDropdown = () => setShowDropdown(prev => !prev);
 
-  const listnav = (
+  const navLinks = (
     <>
-      <li onClick={closeMenu}>
-        <NavLink to={'/'}>Home</NavLink>
+      <li className="my-2 lg:my-0 lg:mx-4">
+        <NavLink to="/" className="hover:text-orange-500">
+          Home
+        </NavLink>
       </li>
-      <li onClick={closeMenu}>
-        <NavLink to="/allfoods">All Foods</NavLink>
+      <li className="my-2 lg:my-0 lg:mx-4">
+        <NavLink to="/allfoods" className="hover:text-orange-500">
+          All Foods
+        </NavLink>
       </li>
-      <li onClick={closeMenu}>
-        <NavLink to="/gallery">Gallery</NavLink>
+      <li className="my-2 lg:my-0 lg:mx-4">
+        <NavLink to="/gallery" className="hover:text-orange-500">
+          Gallery
+        </NavLink>
       </li>
     </>
   );
 
   return (
-    <div className="navbar bg-base-100 lg:w-[1400px] lg:mx-auto">
-      <div className="navbar-start flex items-center">
-        <a className=" flex items-center gap-2 p-0">
+    <header className="bg-gray-900 text-white">
+      <div className="container mx-auto flex justify-between items-center py-4 px-6">
+        {/* Logo */}
+        <div className="flex items-center">
           <img
-            className="w-[50px] rounded-full"
-            src="https://i.ibb.co.com/3dLVZ1x/DALL-E-2024-12-25-08-39-19-A-luxurious-golden-logo-design-for-a-restaurant-named-Savory-Delight-The.webp"
-            alt=""
+            className="w-12 h-12 rounded-full"
+            src="https://i.ibb.co/3dLVZ1x/DALL-E-2024-12-25-08-39-19-A-luxurious-golden-logo-design-for-a-restaurant-named-Savory-Delight-The.webp"
+            alt="Savory Delight"
           />
-          <p>Savory Delight</p>
-        </a>
+          <span className="text-xl font-bold ml-3">Savory Delight</span>
+        </div>
 
+        {/* Desktop Menu */}
+        <nav className="hidden lg:block">
+          <ul className="flex items-center">{navLinks}</ul>
+        </nav>
+
+        {/* Mobile Menu Button */}
         <button
-          className="lg:hidden btn btn-ghost ml-auto"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="lg:hidden text-2xl"
+          onClick={toggleMenu}
+          aria-label="Toggle Menu"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
+          {isMenuOpen ? <FaTimes /> : <FaBars />}
         </button>
+
+        {/* User Section */}
+        <div className="hidden lg:flex flex-col lg:flex-row items-center gap-4">
+          {user ? (
+            <div className="flex flex-col lg:flex-row items-center gap-4">
+              <button
+                onClick={handleSignOut}
+                className="px-4 py-2 bg-orange-500 rounded hover:bg-orange-600"
+              >
+                Sign Out
+              </button>
+              <div className="relative z-10">
+                <div className="avatar cursor-pointer" onClick={toggleDropdown}>
+                  <div className="w-14 rounded-full">
+                    <img src={user.photoURL} alt="User Profile" />
+                  </div>
+                </div>
+                {showDropdown && (
+                  <div className="absolute w-[150px] right-0 mt-2 bg-white text-black shadow-lg rounded">
+                    <Link
+                      to="/myfoods"
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      My Foods
+                    </Link>
+                    <Link
+                      to="/addfoods"
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      Add Foods
+                    </Link>
+                    <Link
+                      to="/myorder"
+                      className="block px-4 py-2 hover:bg-gray-100"
+                    >
+                      My Orders
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="px-4 py-2 bg-orange-500 rounded hover:bg-orange-600"
+            >
+              Login
+            </Link>
+          )}
+        </div>
       </div>
 
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{listnav}</ul>
-      </div>
-
+      {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="lg:hidden navbar-end w-full bg-base-100 shadow-lg">
-          <ul className="menu w-full p-4">{listnav}</ul>
+        <div className="lg:hidden navbar-end w-fullshadow-lg">
+          <ul className="menu w-full p-4">
+            {navLinks}
+            <div className="text-white rounded">
+              <Link
+                to="/myfoods"
+                className="block px-4 py-2 rounded-lg hover:bg-gray-800"
+              >
+                My Foods
+              </Link>
+              <Link
+                to="/addfoods"
+                className="block px-4 py-2 rounded-lg hover:bg-gray-800"
+              >
+                Add Foods
+              </Link>
+              <Link
+                to="/myorder"
+                className="block px-4 py-2 rounded-lg hover:bg-gray-800"
+              >
+                My Orders
+              </Link>
+            </div>
+          </ul>
+          <div className="flex flex-col items-center gap-4 mt-4">
+            {user ? (
+              <div className="flex flex-col items-center gap-4">
+                <button
+                  onClick={handleSignOut}
+                  className="px-4 py-2 bg-orange-500 rounded hover:bg-orange-600"
+                >
+                  Sign Out
+                </button>
+                <div className="relative z-10">
+                  <div
+                    className="avatar cursor-pointer"
+                    onClick={toggleDropdown}
+                  >
+                    <div className="w-14 rounded-full">
+                      <img src={user.photoURL} alt="User Profile" />
+                    </div>
+                  </div>
+                  {/* {showDropdown && (
+                    // <div className="absolute right-0 mt-2 bg-white text-black shadow-lg rounded">
+                    //   <Link
+                    //     to="/myfoods"
+                    //     className="block px-4 py-2 hover:bg-gray-100"
+                    //   >
+                    //     My Foods
+                    //   </Link>
+                    //   <Link
+                    //     to="/addfoods"
+                    //     className="block px-4 py-2 hover:bg-gray-100"
+                    //   >
+                    //     Add Foods
+                    //   </Link>
+                    //   <Link
+                    //     to="/myorder"
+                    //     className="block px-4 py-2 hover:bg-gray-100"
+                    //   >
+                    //     My Orders
+                    //   </Link>
+                    // </div>
+                  )} */}
+                </div>
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className="px-4 py-2 bg-orange-500 rounded hover:bg-orange-600"
+              >
+                Login
+              </Link>
+            )}
+          </div>
         </div>
       )}
 
-      <div className="navbar-end flex items-center gap-4 relative">
-        {user ? (
-          <div className="flex items-center gap-4">
-            {/* Sign Out Button */}
-            <button onClick={handleSignOut} className="btn btn-sm">
-              Sign Out
-            </button>
-            {/* Profile Image and Dropdown */}
-            <div className="relative">
-              <div className="avatar cursor-pointer" onClick={toggleDropdown}>
-                <div className="w-10 rounded-full">
-                  <img src={user.photoURL} alt="User Profile" />
-                </div>
-              </div>
-              {showDropdown && (
-                <div className="absolute z-10 right-0 mt-2 w-40 bg-white border rounded shadow-lg">
-                  <Link
-                    to="/myfoods"
-                    className="block px-4 py-2 hover:bg-gray-200 text-gray-700"
-                  >
-                    My Foods
-                  </Link>
-                  <Link
-                    to="/addfoods"
-                    className="block px-4 py-2 hover:bg-gray-200 text-gray-700"
-                  >
-                    Add Foods
-                  </Link>
-                  <Link
-                    to="/myorder"
-                    className="block px-4 py-2 hover:bg-gray-200 text-gray-700"
-                  >
-                    My Orders
-                  </Link>
-                </div>
-              )}
-            </div>
-          </div>
-        ) : (
-          <Link to={'/login'} className="btn btn-sm">
-            Login
-          </Link>
-        )}
-      </div>
       <ToastContainer />
-    </div>
+    </header>
   );
 };
 

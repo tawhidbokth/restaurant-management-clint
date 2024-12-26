@@ -43,53 +43,69 @@ const NewsSection = () => {
 
   const handlePrev = () => {
     setCurrentIndex(prevIndex =>
-      prevIndex === 0 ? newsData.length - 1 : prevIndex - 1
+      prevIndex === 0 ? newsData.length - 3 : prevIndex - 1
     );
   };
 
   const handleNext = () => {
     setCurrentIndex(prevIndex =>
-      prevIndex === newsData.length - 1 ? 0 : prevIndex + 1
+      prevIndex === newsData.length - 3 ? 0 : prevIndex + 1
     );
   };
 
   return (
-    <section className="py-16 bg-white text-center">
-      <h3 className="text-orange-500 text-lg">Corporate Applications</h3>
-      <h2 className="text-4xl font-bold mt-2 mb-4">Our Latest News</h2>
-      <p className="text-gray-600 mb-8">
-        Assertively myocardinate robust e-tailers for extensible human capital.
-      </p>
-      <div className="flex justify-center items-center gap-4">
-        {/* Previous Button */}
-        <button onClick={handlePrev} className="text-2xl">
-          &#8592;
-        </button>
+    <section className="py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 text-center">
+        <h3 className="text-orange-500 text-lg font-semibold">
+          Corporate Applications
+        </h3>
+        <h2 className="text-4xl font-bold mt-2 mb-6">Our Latest News</h2>
+        <p className="text-gray-600 mb-10">
+          Assertively myocardinate robust e-tailers for extensible human
+          capital.
+        </p>
 
-        {/* News Cards */}
-        <div className="flex gap-6 overflow-hidden">
-          {newsData.slice(currentIndex, currentIndex + 3).map(news => (
-            <div
-              key={news.id}
-              className="w-80 p-4 border rounded-lg shadow-lg bg-white"
+        {/* News Section */}
+        <div className="flex flex-col items-center">
+          <div className="flex gap-4 items-center">
+            {/* Previous Button */}
+            <button
+              onClick={handlePrev}
+              className="bg-orange-500 text-white rounded-full p-3 hover:bg-orange-600 transition duration-300"
             >
-              <img
-                src={news.image}
-                alt={news.title}
-                className="w-full h-48 object-cover rounded-lg"
-              />
-              <h4 className="text-lg font-bold mt-4">{news.title}</h4>
-              <p className="text-gray-500 text-sm mt-2">
-                <span>{news.comments} Comments</span> | <span>{news.date}</span>
-              </p>
-            </div>
-          ))}
-        </div>
+              &#8592;
+            </button>
 
-        {/* Next Button */}
-        <button onClick={handleNext} className="text-2xl">
-          &#8594;
-        </button>
+            {/* News Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {newsData.slice(currentIndex, currentIndex + 3).map(news => (
+                <div
+                  key={news.id}
+                  className="bg-white p-4 shadow-lg rounded-lg hover:shadow-xl transition duration-300"
+                >
+                  <img
+                    src={news.image}
+                    alt={news.title}
+                    className="w-full h-48 object-cover rounded-md"
+                  />
+                  <h4 className="text-lg font-semibold mt-4">{news.title}</h4>
+                  <p className="text-gray-500 text-sm mt-2">
+                    <span>{news.comments} Comments</span> |{' '}
+                    <span>{news.date}</span>
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Next Button */}
+            <button
+              onClick={handleNext}
+              className="bg-orange-500 text-white rounded-full p-3 hover:bg-orange-600 transition duration-300"
+            >
+              &#8594;
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   );

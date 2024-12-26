@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
   return (
     <div>
       <div
-        className="relative z-0 w-full h-[600px] bg-cover bg-center"
+        className="relative -mt-10 z-0 w-full h-[600px] bg-cover bg-center"
         style={{
           backgroundImage:
             "url('https://i.ibb.co.com/cTCcpBZ/DALL-E-2024-12-23-19-10-48-A-beautifully-styled-restaurant-themed-banner-background-image-with-a-war.webp')",
@@ -18,12 +19,11 @@ const Banner = () => {
           <p className="text-lg md:text-xl mb-6">
             Experience the taste of luxury and comfort
           </p>
-          <a
-            href="#menu"
-            className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg"
-          >
-            Explore Menu
-          </a>
+          <Link to={'/allfoods'}>
+            <p className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg">
+              All Foods
+            </p>
+          </Link>
         </div>
       </div>
     </div>
