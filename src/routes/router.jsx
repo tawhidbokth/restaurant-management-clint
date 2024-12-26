@@ -12,6 +12,7 @@ import SingleFoods from '../Pages/SingleFoods';
 import FoodUpdate from '../Pages/FoodUpdate';
 import PurchaseFoods from './../Pages/PurchaseFoods';
 import ErrorPage from '../Pages/ErrorPage';
+import PrivateRoute from './PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -44,7 +45,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'purchase/:id',
-        element: <PurchaseFoods></PurchaseFoods>,
+        element: (
+          <PrivateRoute>
+            <PurchaseFoods></PurchaseFoods>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/foods/${params.id}`),
       },
@@ -61,15 +66,27 @@ const router = createBrowserRouter([
 
       {
         path: 'myfoods',
-        element: <MyFoods></MyFoods>,
+        element: (
+          <PrivateRoute>
+            <MyFoods></MyFoods>
+          </PrivateRoute>
+        ),
       },
       {
         path: 'addfoods',
-        element: <AddFoods></AddFoods>,
+        element: (
+          <PrivateRoute>
+            <AddFoods></AddFoods>
+          </PrivateRoute>
+        ),
       },
       {
         path: 'myorder',
-        element: <MyOrder></MyOrder>,
+        element: (
+          <PrivateRoute>
+            <MyOrder></MyOrder>
+          </PrivateRoute>
+        ),
         loader: () => fetch('http://localhost:5000/foods-purchase'),
       },
     ],

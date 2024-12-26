@@ -1,6 +1,4 @@
-import React from 'react';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
-
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-300 py-12">

@@ -10,17 +10,36 @@ const PurchaseFoods = () => {
   const { user } = useContext(AouthContext);
   const food = useLoaderData();
   const navigate = useNavigate();
-  console.log('amar user', user);
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.target;
     const foodName = form.foodName.value;
     const price = form.price.value;
-    const quantity = form.quantity.value;
+    const quantity = parseInt(form.quantity.value);
     const userName = form.userName.value;
     const userEmail = form.userEmail.value;
     const buyingDate = moment().format('MMMM Do YYYY, h:mm:ss a');
+
+    // Quantity validation
+    if (quantity > food.quantity) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `You cannot purchase more than ${food.quantity} items!`,
+      });
+      return;
+    }
+
+    // Owner restriction validation
+    if (food.hr_email === user.email) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You cannot purchase your own food item!',
+      });
+      return;
+    }
 
     const foodPurchase = {
       food_id: id,
@@ -89,6 +108,15 @@ const PurchaseFoods = () => {
             className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
+        </div>
+
+        <div>
+          <label className="block text-gray-700 font-medium">
+            Available Quantity
+          </label>
+          <p className="w-full p-2 border rounded-lg bg-gray-100">
+            {food.quantity}
+          </p>
         </div>
 
         <div>

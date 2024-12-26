@@ -1,12 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AouthContext } from '../Provider/AouthProvider';
 import Swal from 'sweetalert2';
-
 const MyOrder = () => {
   const [foods, setFoods] = useState([]);
   const { user } = useContext(AouthContext);
-
-  // Fetch purchased foods data for the logged-in user
   useEffect(() => {
     fetch(`http://localhost:5000/foods-purchase?email=${user.email}`)
       .then(res => res.json())
@@ -37,7 +34,6 @@ const MyOrder = () => {
                 icon: 'success',
               });
 
-              // Update UI by filtering out the deleted food
               const remainingFoods = foods.filter(food => food._id !== id);
               setFoods(remainingFoods);
             }

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { ThemeContext } from '../Provider/ThemeProvider';
 
 const FoodMenu = () => {
   const [foods, setFoods] = useState([]);
-
+  const { theme } = useContext(ThemeContext);
   useEffect(() => {
     fetch('http://localhost:5000/foods')
       .then(res => res.json())
@@ -11,7 +12,12 @@ const FoodMenu = () => {
   }, []);
 
   return (
-    <section id="menu" className="py-16 bg-gray-50">
+    <section
+      id="menu"
+      className={`  py-16 bg-gray-50 ${
+        theme === 'light' ? 'bg-white text-black' : 'bg-gray-900 text-white'
+      } `}
+    >
       <div className="max-w-6xl mx-auto px-4 text-center">
         {/* Header Section */}
         <h3 className="text-orange-500 text-lg font-semibold">
@@ -23,7 +29,6 @@ const FoodMenu = () => {
           capital.
         </p>
 
-        {/* Category Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-8">
           {['Beverage', 'Breakfast', 'Dinner', 'Lunch', 'Party'].map(
             category => (
@@ -37,7 +42,6 @@ const FoodMenu = () => {
           )}
         </div>
 
-        {/* Food Items Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-2 gap-6">
           {foods.map(food => (
             <motion.div
@@ -48,20 +52,18 @@ const FoodMenu = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: food.id * 0.1 }}
             >
-              {/* Food Image */}
               <img
                 src={food.foodImage}
                 alt={food.foodName}
                 className="w-20 h-20 md:w-24 md:h-24 rounded-md object-cover mr-4"
               />
               <div className="flex-1">
-                {/* Food Name */}
                 <h4 className="text-lg font-semibold">{food.foodName}</h4>
-                {/* Food Description */}
+
                 <p className="text-sm text-gray-500 hidden md:block">
                   {food.description}
                 </p>
-                {/* Price Section */}
+
                 <div className="mt-2 flex items-center justify-between">
                   <span className="text-orange-500 font-bold">
                     ${food.price}

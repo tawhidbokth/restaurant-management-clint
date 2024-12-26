@@ -1,6 +1,4 @@
 import React, { useContext } from 'react';
-
-// import Swal from 'sweetalert2';
 import { AouthContext } from '../Provider/AouthProvider';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';

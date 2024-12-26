@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { ThemeContext } from '../Provider/ThemeProvider';
 
 const newsData = [
   {
@@ -40,7 +41,7 @@ const newsData = [
 
 const NewsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  const { theme } = useContext(ThemeContext);
   const handlePrev = () => {
     setCurrentIndex(prevIndex =>
       prevIndex === 0 ? newsData.length - 3 : prevIndex - 1
@@ -54,7 +55,11 @@ const NewsSection = () => {
   };
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section
+      className={`py-16 bg-gray-50 ${
+        theme === 'light' ? 'bg-white text-black' : 'bg-gray-900 text-white'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 text-center">
         <h3 className="text-orange-500 text-lg font-semibold">
           Corporate Applications

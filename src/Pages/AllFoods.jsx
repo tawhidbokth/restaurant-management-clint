@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import AllFoodsCard from './AllFoodsCard';
 
 const AllFoods = () => {
   const foods = useLoaderData();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredFoods, setFilteredFoods] = useState(foods);
+
+  const handleSearchChange = event => {
+    const query = event.target.value.toLowerCase();
+    setSearchQuery(query);
+
+    const filtered = foods.filter(food =>
+      food.foodName.toLowerCase().includes(query)
+    );
+    setFilteredFoods(filtered);
+  };
+
   return (
     <div>
       {/* Banner Section */}
@@ -25,11 +38,26 @@ const AllFoods = () => {
         </div>
       </div>
 
-      {/* Cards Section */}
+      {/* Search Section */}
+      <div className="max-w-7xl mx-auto p-4">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          placeholder="Search by food name..."
+          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
-        {foods.map(food => (
-          <AllFoodsCard key={food._id} food={food}></AllFoodsCard>
-        ))}
+        {filteredFoods.length > 0 ? (
+          filteredFoods.map(food => (
+            <AllFoodsCard key={food._id} food={food}></AllFoodsCard>
+          ))
+        ) : (
+          <p className="text-gray-600 col-span-full text-center">
+            No foods found matching "{searchQuery}"
+          </p>
+        )}
       </div>
     </div>
   );

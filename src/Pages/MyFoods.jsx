@@ -2,11 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AouthContext } from '../Provider/AouthProvider';
 import { GrUpdate } from 'react-icons/gr';
-
 const MyFoods = () => {
   const [foods, setfoods] = useState([]);
   const { user } = useContext(AouthContext);
-
   useEffect(() => {
     fetch(`http://localhost:5000/foods?email=${user.email}`)
       .then(res => res.json())

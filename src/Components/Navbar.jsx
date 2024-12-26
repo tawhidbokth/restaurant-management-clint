@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { AouthContext } from '../Provider/AouthProvider';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import ThemeToggleButton from './ThemeToggleButton';
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AouthContext);
@@ -44,6 +45,9 @@ const Navbar = () => {
         <NavLink to="/gallery" className="hover:text-orange-500">
           Gallery
         </NavLink>
+      </li>
+      <li className="my-2 lg:my-0 lg:mx-4">
+        <ThemeToggleButton></ThemeToggleButton>
       </li>
     </>
   );

@@ -9,6 +9,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { signInUser, signInWithGoogle } = useContext(AouthContext);
   const [email, setEmail] = useState('');
+  const from = location.state || '/';
 
   const handlelogin = e => {
     e.preventDefault();
@@ -24,7 +25,7 @@ const Login = () => {
         });
 
         setTimeout(() => {
-          navigate('/');
+          navigate(from);
         }, 2000);
       })
       .catch(error => {
@@ -45,7 +46,7 @@ const Login = () => {
         });
 
         setTimeout(() => {
-          navigate('/');
+          navigate(from);
           toast.dismiss();
         }, 2000);
       })
