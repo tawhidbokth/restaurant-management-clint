@@ -9,15 +9,15 @@ import MyFoods from '../Pages/MyFoods';
 import AddFoods from '../Pages/AddFoods';
 import MyOrder from '../Pages/MyOrder';
 import SingleFoods from '../Pages/SingleFoods';
-import PurchasePage from '../Pages/PurchaseFoods';
 import FoodUpdate from '../Pages/FoodUpdate';
-import PurchaseFoods from '../Pages/PurchaseFoods';
+import PurchaseFoods from './../Pages/PurchaseFoods';
+import ErrorPage from '../Pages/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <HomeLayout></HomeLayout>,
-    errorElement: <h1>error</h1>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'purchase/:id',
-        element: <PurchasePage></PurchasePage>,
+        element: <PurchaseFoods></PurchaseFoods>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/foods/${params.id}`),
       },
@@ -58,10 +58,7 @@ const router = createBrowserRouter([
         path: 'gallery',
         element: <Gallery></Gallery>,
       },
-      {
-        path: 'purchase',
-        element: <PurchaseFoods></PurchaseFoods>,
-      },
+
       {
         path: 'myfoods',
         element: <MyFoods></MyFoods>,
