@@ -5,7 +5,9 @@ const MyOrder = () => {
   const [foods, setFoods] = useState([]);
   const { user } = useContext(AouthContext);
   useEffect(() => {
-    fetch(`http://localhost:5000/foods-purchase?email=${user.email}`)
+    fetch(
+      `https://restaurant-management-server-lilac.vercel.app/foods-purchase?email=${user.email}`
+    )
       .then(res => res.json())
       .then(data => setFoods(data));
   }, [user.email]);
@@ -22,9 +24,12 @@ const MyOrder = () => {
       confirmButtonText: 'Yes, delete it!',
     }).then(result => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/foods-purchase/${id}`, {
-          method: 'DELETE',
-        })
+        fetch(
+          `https://restaurant-management-server-lilac.vercel.app/foods-purchase/${id}`,
+          {
+            method: 'DELETE',
+          }
+        )
           .then(res => res.json())
           .then(data => {
             if (data.deletedCount) {
@@ -50,7 +55,7 @@ const MyOrder = () => {
   };
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto mt-16">
       <table className="table w-full">
         {/* Table Head */}
         <thead>

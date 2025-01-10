@@ -4,6 +4,7 @@ import TopFoods from './TopFoods';
 import NewsSection from './NewsSection';
 import FoodMenu from './FoodMenu';
 import { ThemeContext } from '../Provider/ThemeProvider';
+import Testmonial from './Testmonial';
 
 const Home = () => {
   const { theme } = useContext(ThemeContext);
@@ -17,6 +18,7 @@ const Home = () => {
       <TopFoods></TopFoods>
       <FoodMenu></FoodMenu>
       <NewsSection></NewsSection>
+      <Testmonial></Testmonial>
     </div>
   );
 };

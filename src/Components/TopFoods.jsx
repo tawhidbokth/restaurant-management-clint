@@ -7,7 +7,7 @@ const TopFoods = () => {
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
-    fetch('http://localhost:5000/foods?limit=6')
+    fetch('https://restaurant-management-server-lilac.vercel.app/foods?limit=8')
       .then(res => res.json())
       .then(data => {
         const sortedFoods = data.sort(
@@ -26,7 +26,7 @@ const TopFoods = () => {
       >
         Top Foods
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {foods.map(food => (
           <div
             key={food._id}

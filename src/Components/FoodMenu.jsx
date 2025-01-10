@@ -6,7 +6,7 @@ const FoodMenu = () => {
   const [foods, setFoods] = useState([]);
   const { theme } = useContext(ThemeContext);
   useEffect(() => {
-    fetch('http://localhost:5000/foods')
+    fetch('https://restaurant-management-server-lilac.vercel.app/foods')
       .then(res => res.json())
       .then(data => setFoods(data));
   }, []);

@@ -14,7 +14,7 @@ const AddFoods = () => {
     const initialData = Object.fromEntries(formData.entries());
     console.log(initialData);
 
-    fetch('http://localhost:5000/foods', {
+    fetch('https://restaurant-management-server-lilac.vercel.app/foods', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',

@@ -5,7 +5,7 @@ const Banner = () => {
   return (
     <div>
       <div
-        className="relative -mt-10 z-0 w-full h-[600px] bg-cover bg-center"
+        className="relative mt-12  z-0 w-full h-[600px] bg-cover bg-center"
         style={{
           backgroundImage:
             "url('https://i.ibb.co.com/cTCcpBZ/DALL-E-2024-12-23-19-10-48-A-beautifully-styled-restaurant-themed-banner-background-image-with-a-war.webp')",
@@ -20,7 +20,7 @@ const Banner = () => {
             Experience the taste of luxury and comfort
           </p>
           <Link to={'/allfoods'}>
-            <p className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg">
+            <p className="px-6 py-3 bg-orange-400 hover:bg-red-700 text-white font-semibold rounded-lg">
               All Foods
             </p>
           </Link>

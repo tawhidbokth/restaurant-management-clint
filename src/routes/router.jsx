@@ -35,13 +35,16 @@ const router = createBrowserRouter([
       {
         path: 'allfoods',
         element: <AllFoods></AllFoods>,
-        loader: () => fetch('http://localhost:5000/foods'),
+        loader: () =>
+          fetch('https://restaurant-management-server-lilac.vercel.app/foods'),
       },
       {
         path: 'foods/:id',
         element: <SingleFoods></SingleFoods>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/foods/${params.id}`),
+          fetch(
+            `https://restaurant-management-server-lilac.vercel.app/foods/${params.id}`
+          ),
       },
       {
         path: 'purchase/:id',
@@ -51,13 +54,17 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/foods/${params.id}`),
+          fetch(
+            `https://restaurant-management-server-lilac.vercel.app/foods/${params.id}`
+          ),
       },
       {
         path: 'update/:id',
         element: <FoodUpdate></FoodUpdate>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/foods/${params.id}`),
+          fetch(
+            `https://restaurant-management-server-lilac.vercel.app/foods/${params.id}`
+          ),
       },
       {
         path: 'gallery',
@@ -87,7 +94,10 @@ const router = createBrowserRouter([
             <MyOrder></MyOrder>
           </PrivateRoute>
         ),
-        loader: () => fetch('http://localhost:5000/foods-purchase'),
+        loader: () =>
+          fetch(
+            'https://restaurant-management-server-lilac.vercel.app/foods-purchase'
+          ),
       },
     ],
   },

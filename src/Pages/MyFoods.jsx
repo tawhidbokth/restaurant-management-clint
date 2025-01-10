@@ -6,7 +6,9 @@ const MyFoods = () => {
   const [foods, setfoods] = useState([]);
   const { user } = useContext(AouthContext);
   useEffect(() => {
-    fetch(`http://localhost:5000/foods?email=${user.email}`)
+    fetch(
+      `https://restaurant-management-server-lilac.vercel.app/foods?email=${user.email}`
+    )
       .then(res => res.json())
       .then(data => setfoods(data));
   }, [user.email]);

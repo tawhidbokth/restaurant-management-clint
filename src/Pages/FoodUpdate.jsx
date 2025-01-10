@@ -13,13 +13,16 @@ const FoodUpdate = () => {
     const formData = new FormData(e.target);
     const initialData = Object.fromEntries(formData.entries());
     console.log(initialData);
-    fetch(`http://localhost:5000/foods/${food._id}`, {
-      method: 'PUT',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(initialData),
-    })
+    fetch(
+      `https://restaurant-management-server-lilac.vercel.app/foods/${food._id}`,
+      {
+        method: 'PUT',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(initialData),
+      }
+    )
       .then(res => res.json())
       .then(data => {
         console.log(data);

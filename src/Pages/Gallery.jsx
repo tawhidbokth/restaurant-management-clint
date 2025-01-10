@@ -70,7 +70,7 @@ const Gallery = () => {
   return (
     <div>
       <div
-        className="relative z-0 w-full mb-5  h-[200px] bg-cover bg-center"
+        className="relative mt-16 z-0 w-full mb-5  h-[200px] bg-cover bg-center"
         style={{
           backgroundImage:
             "url('https://i.ibb.co.com/cTCcpBZ/DALL-E-2024-12-23-19-10-48-A-beautifully-styled-restaurant-themed-banner-background-image-with-a-war.webp')",
