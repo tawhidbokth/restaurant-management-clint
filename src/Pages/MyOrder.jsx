@@ -55,7 +55,7 @@ const MyOrder = () => {
   };
 
   return (
-    <div className="overflow-x-auto mt-16">
+    <div className="overflow-x-auto mt-16 border-2 my-10 lg:mx-5">
       <table className="table w-full">
         {/* Table Head */}
         <thead>
