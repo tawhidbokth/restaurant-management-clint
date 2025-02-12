@@ -14,7 +14,7 @@ const MyFoods = () => {
   }, [user.email]);
 
   return (
-    <div className="max-w-7xl mx-auto p-4">
+    <div className="max-w-7xl mx-auto p-4 mt-12">
       <div className="overflow-x-auto">
         <table className="table-auto w-full border-collapse border border-gray-300">
           {/* Head */}
