@@ -13,6 +13,7 @@ import FoodUpdate from '../Pages/FoodUpdate';
 import PurchaseFoods from './../Pages/PurchaseFoods';
 import ErrorPage from '../Pages/ErrorPage';
 import PrivateRoute from './PrivateRoute';
+import Dashboard from '../Dashboard/Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -98,6 +99,17 @@ const router = createBrowserRouter([
           fetch(
             'https://restaurant-management-server-lilac.vercel.app/foods-purchase'
           ),
+      },
+    ],
+  },
+
+  {
+    path: 'dashboard',
+    element: <Dashboard />,
+    children: [
+      {
+        path: 'dashboard',
+        element: <h1>our dashboard</h1>,
       },
     ],
   },

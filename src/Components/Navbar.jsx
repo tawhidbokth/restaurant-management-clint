@@ -137,6 +137,12 @@ const Navbar = () => {
             {navLinks}
             <div className="text-white rounded">
               <Link
+                to="/dashboard"
+                className="block px-4 py-2 rounded-lg hover:bg-gray-800"
+              >
+                Dashboard
+              </Link>
+              <Link
                 to="/myfoods"
                 className="block px-4 py-2 rounded-lg hover:bg-gray-800"
               >
