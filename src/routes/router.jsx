@@ -71,6 +71,17 @@ const router = createBrowserRouter([
         path: 'gallery',
         element: <Gallery></Gallery>,
       },
+    ],
+  },
+
+  {
+    path: 'dashboard',
+    element: <Dashboard />,
+    children: [
+      {
+        path: 'dashboard',
+        element: <h1>our dashboard</h1>,
+      },
 
       {
         path: 'myfoods',
@@ -99,17 +110,6 @@ const router = createBrowserRouter([
           fetch(
             'https://restaurant-management-server-lilac.vercel.app/foods-purchase'
           ),
-      },
-    ],
-  },
-
-  {
-    path: 'dashboard',
-    element: <Dashboard />,
-    children: [
-      {
-        path: 'dashboard',
-        element: <h1>our dashboard</h1>,
       },
     ],
   },

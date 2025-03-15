@@ -1,49 +1,57 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AouthContext } from '../Provider/AouthProvider';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-const FoodUpdate = () => {
+const FoodUpdate = ({ isOpen, onClose }) => {
   const { user } = useContext(AouthContext);
   const navigate = useNavigate();
-  const food = useLoaderData();
+  const food = useLoaderData(); // Get food data from the loader
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const initialData = Object.fromEntries(formData.entries());
-    console.log(initialData);
-    fetch(
-      `https://restaurant-management-server-lilac.vercel.app/foods/${food._id}`,
-      {
-        method: 'PUT',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify(initialData),
-      }
-    )
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        if (data.modifiedCount) {
-          console.log('successfully updated');
-          Swal.fire({
-            title: 'Success!',
-            position: 'top-center',
-            text: 'Food updated successfully',
-            icon: 'success',
-            confirmButtonText: 'Ok',
-          });
-          e.target.reset();
-          navigate('/myfoods');
+
+    try {
+      const response = await fetch(
+        `https://restaurant-management-server-lilac.vercel.app/foods/${food._id}`,
+        {
+          method: 'PUT',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(initialData),
         }
+      );
+      const data = await response.json();
+
+      if (data.modifiedCount) {
+        Swal.fire({
+          title: 'Success!',
+          position: 'top-center',
+          text: 'Food updated successfully',
+          icon: 'success',
+          confirmButtonText: 'Ok',
+        });
+        navigate('/myfoods'); // Redirect after successful update
+      }
+    } catch (error) {
+      console.error('Error updating food:', error);
+      Swal.fire({
+        title: 'Error!',
+        text: 'Failed to update food',
+        icon: 'error',
+        confirmButtonText: 'Ok',
       });
+    }
   };
+
+  if (!isOpen) return null; // Don't render if modal is not open
 
   return (
     <div className="max-w-4xl mx-auto my-8 p-6 bg-white shadow-md rounded-md">
-      <h2 className="text-2xl font-bold text-center mb-6">Add New Food</h2>
+      <h2 className="text-2xl font-bold text-center mb-6">Update Food</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Food Name */}
         <div>
@@ -140,37 +148,33 @@ const FoodUpdate = () => {
             className="w-full p-2 border rounded"
           />
         </div>
+
         {/* Add By (Read-Only) */}
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">HR Name</span>
-          </label>
+        <div>
+          <label className="block text-sm font-medium">HR Name</label>
           <input
             type="text"
             name="hr_name"
-            placeholder="HR Name"
             defaultValue={user.displayName}
             readOnly
-            className="input input-bordered"
+            className="w-full p-2 border rounded bg-gray-100"
             required
           />
         </div>
 
         {/* HR Email */}
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">HR Email</span>
-          </label>
+        <div>
+          <label className="block text-sm font-medium">HR Email</label>
           <input
             type="text"
-            defaultValue={user?.email}
             name="hr_email"
-            placeholder="HR Email"
-            className="input input-bordered"
+            defaultValue={user?.email}
             readOnly
+            className="w-full p-2 border rounded bg-gray-100"
             required
           />
         </div>
+
         <button
           type="submit"
           className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"

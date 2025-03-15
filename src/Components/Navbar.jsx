@@ -98,22 +98,10 @@ const Navbar = () => {
                 {showDropdown && (
                   <div className="absolute w-[150px] right-0 mt-2 bg-white text-black shadow-lg rounded">
                     <Link
-                      to="/myfoods"
-                      className="block px-4 py-2 hover:bg-gray-100"
+                      to="/dashboard"
+                      className="block px-4 py-2 rounded-lg hover:bg-gray-800"
                     >
-                      My Foods
-                    </Link>
-                    <Link
-                      to="/addfoods"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      Add Foods
-                    </Link>
-                    <Link
-                      to="/myorder"
-                      className="block px-4 py-2 hover:bg-gray-100"
-                    >
-                      My Orders
+                      Dashboard
                     </Link>
                   </div>
                 )}
@@ -141,24 +129,6 @@ const Navbar = () => {
                 className="block px-4 py-2 rounded-lg hover:bg-gray-800"
               >
                 Dashboard
-              </Link>
-              <Link
-                to="/myfoods"
-                className="block px-4 py-2 rounded-lg hover:bg-gray-800"
-              >
-                My Foods
-              </Link>
-              <Link
-                to="/addfoods"
-                className="block px-4 py-2 rounded-lg hover:bg-gray-800"
-              >
-                Add Foods
-              </Link>
-              <Link
-                to="/myorder"
-                className="block px-4 py-2 rounded-lg hover:bg-gray-800"
-              >
-                My Orders
               </Link>
             </div>
           </ul>
