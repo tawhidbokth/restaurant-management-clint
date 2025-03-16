@@ -9,7 +9,7 @@ const HomeLayout = () => {
       <nav>
         <Navbar></Navbar>
       </nav>
-      <main className="flex-grow py-10">
+      <main className="flex-grow py-20">
         <Outlet />
       </main>
 

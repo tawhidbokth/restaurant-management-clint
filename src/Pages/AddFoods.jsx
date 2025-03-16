@@ -91,7 +91,7 @@ const AddFoods = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto my-8 mt-20 bg-gradient-to-r from-purple-50 to-blue-50 p-8 shadow-2xl rounded-2xl">
+    <div className="max-w-4xl mx-auto my-8 mt-2 bg-gradient-to-r from-purple-50 to-blue-50 p-8 shadow-2xl rounded-2xl">
       <h2 className="text-3xl font-bold text-center mb-8 text-purple-700">
         Add New Food
       </h2>
