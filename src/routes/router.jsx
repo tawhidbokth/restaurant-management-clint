@@ -14,6 +14,8 @@ import PurchaseFoods from './../Pages/PurchaseFoods';
 import ErrorPage from '../Pages/ErrorPage';
 import PrivateRoute from './PrivateRoute';
 import Dashboard from '../Dashboard/Dashboard';
+import Analytics from '../Pages/Analytics';
+import UserAnalytics from '../Pages/UserAnalytics';
 
 const router = createBrowserRouter([
   {
@@ -98,6 +100,14 @@ const router = createBrowserRouter([
             <AddFoods></AddFoods>
           </PrivateRoute>
         ),
+      },
+      {
+        path: 'analytics',
+        element: <Analytics></Analytics>,
+      },
+      {
+        path: 'useranalytics',
+        element: <UserAnalytics></UserAnalytics>,
       },
       {
         path: 'myorder',

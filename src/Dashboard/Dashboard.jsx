@@ -51,6 +51,14 @@ const Sidebar = () => {
               isCollapsed={isCollapsed}
             />
           </Link>
+          <Link to={'/dashboard/useranalytics'}>
+            <SidebarItem
+              icon={<FaChartLine />}
+              text="User Analytics"
+              isCollapsed={isCollapsed}
+            />
+          </Link>
+
           <Link to={'/dashboard/myfoods'}>
             <SidebarItem
               icon={<GoListOrdered />}
