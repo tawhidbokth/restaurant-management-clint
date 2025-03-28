@@ -16,6 +16,7 @@ import PrivateRoute from './PrivateRoute';
 import Dashboard from '../Dashboard/Dashboard';
 import Analytics from '../Pages/Analytics';
 import UserAnalytics from '../Pages/UserAnalytics';
+import ReservationForm from '../Components/ReservationForm';
 
 const router = createBrowserRouter([
   {
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
       {
         path: 'useranalytics',
         element: <UserAnalytics></UserAnalytics>,
+      },
+      {
+        path: 'booking',
+        element: <ReservationForm></ReservationForm>,
       },
       {
         path: 'myorder',

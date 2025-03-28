@@ -8,6 +8,7 @@ import {
   FaSignOutAlt,
   FaBars,
   FaAddressCard,
+  FaBookmark,
 } from 'react-icons/fa';
 import { GoListOrdered } from 'react-icons/go';
 import { Link, Outlet } from 'react-router-dom';
@@ -77,6 +78,13 @@ const Sidebar = () => {
             <SidebarItem
               icon={<BiCart />}
               text="MY Order"
+              isCollapsed={isCollapsed}
+            />
+          </Link>
+          <Link to={'/dashboard/booking'}>
+            <SidebarItem
+              icon={<FaBookmark />}
+              text="Reservation"
               isCollapsed={isCollapsed}
             />
           </Link>
