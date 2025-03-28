@@ -5,6 +5,7 @@ import NewsSection from './NewsSection';
 import FoodMenu from './FoodMenu';
 import { ThemeContext } from '../Provider/ThemeProvider';
 import Testmonial from './Testmonial';
+import ReservationForm from './ReservationForm';
 
 const Home = () => {
   const { theme } = useContext(ThemeContext);
