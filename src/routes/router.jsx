@@ -17,6 +17,8 @@ import Dashboard from '../Dashboard/Dashboard';
 import Analytics from '../Pages/Analytics';
 import UserAnalytics from '../Pages/UserAnalytics';
 import ReservationForm from '../Components/ReservationForm';
+import ContactUs from '../Pages/ContactUs';
+import AboutUs from '../Pages/AboutUs';
 
 const router = createBrowserRouter([
   {
@@ -73,6 +75,15 @@ const router = createBrowserRouter([
       {
         path: 'gallery',
         element: <Gallery></Gallery>,
+      },
+
+      {
+        path: 'contactus',
+        element: <ContactUs></ContactUs>,
+      },
+      {
+        path: 'aboutus',
+        element: <AboutUs></AboutUs>,
       },
     ],
   },

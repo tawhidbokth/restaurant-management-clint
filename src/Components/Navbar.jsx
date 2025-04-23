@@ -47,6 +47,16 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li className="my-2 lg:my-0 lg:mx-4">
+        <NavLink to="/contactus" className="hover:text-orange-500">
+          Contact Us
+        </NavLink>
+      </li>
+      <li className="my-2 lg:my-0 lg:mx-4">
+        <NavLink to="/aboutus" className="hover:text-orange-500">
+          About Us
+        </NavLink>
+      </li>
+      <li className="my-2 lg:my-0 lg:mx-4">
         <ThemeToggleButton></ThemeToggleButton>
       </li>
     </>
