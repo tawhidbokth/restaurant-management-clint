@@ -6,6 +6,7 @@ import FoodMenu from './FoodMenu';
 import { ThemeContext } from '../Provider/ThemeProvider';
 import Testmonial from './Testmonial';
 import ReservationForm from './ReservationForm';
+import BlogSection from './BlogSection';
 
 const Home = () => {
   const { theme } = useContext(ThemeContext);
@@ -18,6 +19,7 @@ const Home = () => {
       <Banner></Banner>
       <TopFoods></TopFoods>
       <FoodMenu></FoodMenu>
+      <BlogSection></BlogSection>
       <NewsSection></NewsSection>
       <Testmonial></Testmonial>
     </div>
