@@ -1,24 +1,11 @@
 import React, { useContext } from 'react';
-import { ThemeContext } from '../Provider/ThemeProvider';
 
 const Testmonial = () => {
-  const { theme } = useContext(ThemeContext);
-
   return (
     <div>
-      <div
-        className={`py-16  ${
-          theme === 'light'
-            ? 'bg-gray-100 text-black'
-            : 'bg-gray-900 text-gray-100'
-        }`}
-      >
+      <div className={'py-16 '}>
         <div className="max-w-6xl mx-auto text-center">
-          <h2
-            className={`text-3xl font-extrabold  sm:text-4xl  ${
-              theme === 'light' ? ' text-black' : ' text-white'
-            } `}
-          >
+          <h2 className={'text-3xl font-extrabold  sm:text-4x'}>
             What Our Customers Say
           </h2>
           <p className="mt-4 text-lg text-gray-600">

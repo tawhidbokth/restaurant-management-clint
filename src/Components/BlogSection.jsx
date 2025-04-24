@@ -45,12 +45,10 @@ const BlogSection = () => {
   };
 
   return (
-    <section className="py-16 bg-gray-50" id="blog">
+    <section className="py-16 " id="blog">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800">
-            Latest From Our Blog
-          </h2>
+          <h2 className="text-3xl font-bold">Latest From Our Blog</h2>
           <p className="mt-2 text-gray-500">
             Stay updated with our stories, news, and food inspiration.
           </p>
