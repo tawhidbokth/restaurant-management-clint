@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ThemeContext } from '../Provider/ThemeProvider';
 
 const FoodMenu = () => {
   const [foods, setFoods] = useState([]);
-  const { theme } = useContext(ThemeContext);
+
   useEffect(() => {
     fetch('https://restaurant-management-server-lilac.vercel.app/foods')
       .then(res => res.json())
@@ -12,12 +11,7 @@ const FoodMenu = () => {
   }, []);
 
   return (
-    <section
-      id="menu"
-      className={`  py-16 bg-gray-50 ${
-        theme === 'light' ? 'bg-white text-black' : 'bg-gray-900 text-white'
-      } `}
-    >
+    <section id="menu" className={'py-16 '}>
       <div className="max-w-6xl mx-auto px-4 text-center">
         {/* Header Section */}
         <h3 className="text-orange-500 text-lg font-semibold">
