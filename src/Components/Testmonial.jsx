@@ -1,24 +1,11 @@
 import React, { useContext } from 'react';
-import { ThemeContext } from '../Provider/ThemeProvider';
 
 const Testmonial = () => {
-  const { theme } = useContext(ThemeContext);
-
   return (
     <div>
-      <div
-        className={`py-16  ${
-          theme === 'light'
-            ? 'bg-gray-100 text-black'
-            : 'bg-gray-900 text-gray-100'
-        }`}
-      >
+      <div className={'py-16 '}>
         <div className="max-w-6xl mx-auto text-center">
-          <h2
-            className={`text-3xl font-extrabold  sm:text-4xl  ${
-              theme === 'light' ? ' text-black' : ' text-white'
-            } `}
-          >
+          <h2 className={'text-3xl font-extrabold  sm:text-4x'}>
             What Our Customers Say
           </h2>
           <p className="mt-4 text-lg text-gray-600">
@@ -31,7 +18,7 @@ const Testmonial = () => {
           {/* Review Container */}
           <div className="grid lg:grid-cols-4 md:grid-cols-2 w-[1400px] mx-auto overflow-x-auto snap-x snap-mandatory px-8">
             {/* Review 1 */}
-            <div className="snap-center flex-shrink-0 bg-white rounded-lg shadow-lg p-6 w-80">
+            <div className="snap-center flex-shrink-0 rounded-lg shadow-lg p-6 w-80">
               <div className="flex items-center space-x-4">
                 <img
                   src="https://i.ibb.co.com/xfS5Rfp/385490917-1510631689733100-2473354057220819702-n-LE-upscale-balanced-x4-removebg-preview-1-modified.png"
@@ -54,7 +41,7 @@ const Testmonial = () => {
             </div>
 
             {/* Review 2 */}
-            <div className="snap-center flex-shrink-0 bg-white rounded-lg shadow-lg p-6 w-80">
+            <div className="snap-center flex-shrink-0  rounded-lg shadow-lg p-6 w-80">
               <div className="flex items-center space-x-4">
                 <img
                   src="https://i.ibb.co.com/xfS5Rfp/385490917-1510631689733100-2473354057220819702-n-LE-upscale-balanced-x4-removebg-preview-1-modified.png"
@@ -77,7 +64,7 @@ const Testmonial = () => {
             </div>
 
             {/* Review 3 */}
-            <div className="snap-center flex-shrink-0 bg-white rounded-lg shadow-lg p-6 w-80">
+            <div className="snap-center flex-shrink-0  rounded-lg shadow-lg p-6 w-80">
               <div className="flex items-center space-x-4">
                 <img
                   src="https://i.ibb.co.com/xfS5Rfp/385490917-1510631689733100-2473354057220819702-n-LE-upscale-balanced-x4-removebg-preview-1-modified.png"
@@ -100,7 +87,7 @@ const Testmonial = () => {
             </div>
 
             {/* Review 4 */}
-            <div className="snap-center flex-shrink-0 bg-white rounded-lg shadow-lg p-6 w-80">
+            <div className="snap-center flex-shrink-0  rounded-lg shadow-lg p-6 w-80">
               <div className="flex items-center space-x-4">
                 <img
                   src="https://i.ibb.co.com/xfS5Rfp/385490917-1510631689733100-2473354057220819702-n-LE-upscale-balanced-x4-removebg-preview-1-modified.png"

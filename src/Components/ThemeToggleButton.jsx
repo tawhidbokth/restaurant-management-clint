@@ -1,34 +1,24 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../Provider/ThemeProvider';
+import React, { useEffect, useState } from 'react';
 
 const ThemeToggleButton = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  };
 
   return (
-    <button
-      className={`px-4 py-2 rounded-lg ${
-        theme === 'light' ? ' text-white' : ' text-black'
-      }`}
-    >
-      {' '}
-      {theme ===
-      (
-        <input
-          onClick={toggleTheme}
-          type="checkbox"
-          value="synthwave"
-          className="toggle theme-controller col-span-2 col-start-1 row-start-1 border-sky-400 bg-amber-300 [--tglbg:theme(colors.sky.500)] checked:border-black checked:bg-blue-300 checked:[--tglbg:theme(colors.black)]"
-        />
-      ) ? (
-        'Dark'
-      ) : (
-        <input
-          onClick={toggleTheme}
-          type="checkbox"
-          value="synthwave"
-          className="toggle theme-controller col-span-2 col-start-1 row-start-1 border-sky-400 bg-amber-300 [--tglbg:theme(colors.sky.500)] checked:border-blue-800 checked:bg-blue-300 checked:[--tglbg:theme(colors.blue.900)]"
-        />
-      )}{' '}
+    <button onClick={toggleTheme} className="btn btn-sm btn-outline">
+      {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
     </button>
   );
 };
