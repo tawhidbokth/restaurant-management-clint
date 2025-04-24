@@ -40,7 +40,7 @@ const FoodMenu = () => {
           {foods.map(food => (
             <motion.div
               key={food._id}
-              className="flex items-center border rounded-lg p-4 shadow-sm hover:shadow-md transition bg-white"
+              className="flex items-center border rounded-lg p-4 shadow-sm hover:shadow-md transition "
               whileHover={{ scale: 1.02 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

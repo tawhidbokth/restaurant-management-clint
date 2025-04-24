@@ -81,7 +81,7 @@ const NewsSection = () => {
               {newsData.slice(currentIndex, currentIndex + 3).map(news => (
                 <div
                   key={news.id}
-                  className="bg-white p-4 shadow-lg rounded-lg hover:shadow-xl transition duration-300"
+                  className="p-4 shadow-lg rounded-lg hover:shadow-xl transition duration-300"
                 >
                   <img
                     src={news.image}

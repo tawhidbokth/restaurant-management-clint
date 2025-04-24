@@ -58,7 +58,7 @@ const BlogSection = () => {
           {blogPosts.map(post => (
             <div
               key={post.id}
-              className="bg-white rounded-2xl shadow hover:shadow-lg transition duration-300 overflow-hidden"
+              className=" rounded-2xl shadow hover:shadow-lg transition duration-300 overflow-hidden"
             >
               <img
                 src={post.image}
@@ -66,13 +66,11 @@ const BlogSection = () => {
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
-                <span className="text-sm text-gray-400">
+                <span className="text-sm ">
                   {post.date} • {post.author}
                 </span>
-                <h3 className="text-xl font-semibold text-gray-800 mt-2">
-                  {post.title}
-                </h3>
-                <p className="text-gray-600 mt-2">{post.excerpt}</p>
+                <h3 className="text-xl font-semibold  mt-2">{post.title}</h3>
+                <p className="mt-2">{post.excerpt}</p>
                 <button
                   onClick={() => openModal(post)}
                   className="text-orange-500 font-medium mt-4 inline-block hover:underline"
