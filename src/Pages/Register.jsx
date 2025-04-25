@@ -26,18 +26,76 @@ const Register = () => {
       return;
     }
 
+    //   createUser(email, password, name, photo)
+    //     .then(() => {
+    //       const newUser = {
+    //         name,
+    //         email,
+    //         photo,
+    //         role: 'user',
+    //       };
+    //       fetch('https://restaurant-management-server-lilac.vercel.app/users', {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(newUser),
+    //       });
+    //       form.reset();
+    //       setError('');
+    //       toast.success('Registration Successful!', {
+    //         position: 'top-center',
+    //         autoClose: 2000,
+    //       });
+
+    //       setTimeout(() => {
+    //         navigate('/');
+    //       }, 2000);
+    //     })
+    //     .catch(error => {
+    //       setError(error.message);
+    //       toast.error(error.message, {
+    //         position: 'top-center',
+    //         autoClose: 2000,
+    //       });
+    //     });
+    // };
+
     createUser(email, password, name, photo)
       .then(() => {
-        form.reset();
-        setError('');
-        toast.success('Registration Successful!', {
-          position: 'top-center',
-          autoClose: 2000,
-        });
-
-        setTimeout(() => {
-          navigate('/');
-        }, 2000);
+        const newUser = {
+          name,
+          email,
+          photo,
+          role: 'user',
+        };
+        fetch('https://restaurant-management-server-lilac.vercel.app/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.insertedId || data.message === 'User already exists') {
+              toast.success('Registration Successful!', {
+                position: 'top-center',
+                autoClose: 2000,
+              });
+              form.reset();
+              setError('');
+              setTimeout(() => {
+                navigate('/');
+              }, 2000);
+            } else {
+              toast.error('Failed to save user in DB');
+            }
+          })
+          .catch(err => {
+            toast.error('POST /users failed');
+            console.error(err);
+          });
       })
       .catch(error => {
         setError(error.message);

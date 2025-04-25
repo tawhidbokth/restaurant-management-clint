@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BiCart } from 'react-icons/bi';
 import {
   FaHome,
@@ -12,13 +12,32 @@ import {
 } from 'react-icons/fa';
 import { GoListOrdered } from 'react-icons/go';
 import { Link, Outlet } from 'react-router-dom';
+import axios from 'axios';
+import { AouthContext } from '../Provider/AouthProvider';
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const { user } = useContext(AouthContext);
+  const [role, setRole] = useState(null);
 
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
   };
+
+  useEffect(() => {
+    if (user?.email) {
+      axios
+        .get(
+          `https://restaurant-management-server-lilac.vercel.app/users?email=${user.email}`
+        )
+        .then(res => {
+          setRole(res.data[0]?.role); // Assuming res.data is an array
+        })
+        .catch(error => {
+          console.error('Error fetching user role:', error);
+        });
+    }
+  }, [user]);
 
   return (
     <div className="flex min-h-screen">
@@ -45,49 +64,66 @@ const Sidebar = () => {
               isCollapsed={isCollapsed}
             />
           </Link>
-          <Link to={'/dashboard/analytics'}>
-            <SidebarItem
-              icon={<FaChartLine />}
-              text="Analytics"
-              isCollapsed={isCollapsed}
-            />
-          </Link>
-          <Link to={'/dashboard/useranalytics'}>
-            <SidebarItem
-              icon={<FaChartLine />}
-              text="User Analytics"
-              isCollapsed={isCollapsed}
-            />
-          </Link>
 
-          <Link to={'/dashboard/myfoods'}>
-            <SidebarItem
-              icon={<GoListOrdered />}
-              text="My Foods"
-              isCollapsed={isCollapsed}
-            />
-          </Link>
-          <Link to={'/dashboard/addfoods'}>
-            <SidebarItem
-              icon={<FaAddressCard />}
-              text="Add Foods"
-              isCollapsed={isCollapsed}
-            />
-          </Link>
-          <Link to={'/dashboard/myorder'}>
-            <SidebarItem
-              icon={<BiCart />}
-              text="MY Order"
-              isCollapsed={isCollapsed}
-            />
-          </Link>
-          <Link to={'/dashboard/booking'}>
-            <SidebarItem
-              icon={<FaBookmark />}
-              text="Reservation"
-              isCollapsed={isCollapsed}
-            />
-          </Link>
+          {role === 'user' && (
+            <>
+              <Link to={'/dashboard/booking'}>
+                <SidebarItem
+                  icon={<FaBookmark />}
+                  text="Reservation"
+                  isCollapsed={isCollapsed}
+                />
+              </Link>
+              <Link to={'/dashboard/myorder'}>
+                <SidebarItem
+                  icon={<BiCart />}
+                  text="My Order"
+                  isCollapsed={isCollapsed}
+                />
+              </Link>
+              <Link to={'/dashboard/useranalytics'}>
+                <SidebarItem
+                  icon={<FaChartLine />}
+                  text="User Analytics"
+                  isCollapsed={isCollapsed}
+                />
+              </Link>
+            </>
+          )}
+
+          {role === 'admin' && (
+            <>
+              <Link to={'/dashboard/analytics'}>
+                <SidebarItem
+                  icon={<FaChartLine />}
+                  text="Analytics"
+                  isCollapsed={isCollapsed}
+                />
+              </Link>
+              <Link to={'/dashboard/myfoods'}>
+                <SidebarItem
+                  icon={<GoListOrdered />}
+                  text="My Foods"
+                  isCollapsed={isCollapsed}
+                />
+              </Link>
+              <Link to={'/dashboard/addfoods'}>
+                <SidebarItem
+                  icon={<FaAddressCard />}
+                  text="Add Foods"
+                  isCollapsed={isCollapsed}
+                />
+              </Link>
+              <Link to={'/dashboard/useranalytics'}>
+                <SidebarItem
+                  icon={<FaChartLine />}
+                  text="User Analytics"
+                  isCollapsed={isCollapsed}
+                />
+              </Link>
+            </>
+          )}
+
           <SidebarItem
             icon={<FaSignOutAlt />}
             text="Logout"
